@@ -13,6 +13,8 @@ sqlConBuilder.ConnectionString = configuration["ConnectionStrings:AppConnection"
 
 builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(sqlConBuilder.ConnectionString));
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<IAppRepo, SqlAppRepo>();
 
 builder.Services.AddAuthentication(options =>

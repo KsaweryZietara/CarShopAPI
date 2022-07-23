@@ -10,6 +10,40 @@ namespace CarShopAPI.Data{
             _context = context;
         }
 
+        public IEnumerable<CarModel> CarsByUserId(int id){
+            return _context.Cars.Where(x => x.SellerId == id);
+        }
+
+        public IEnumerable<CarModel> CarsWithSettings(SearchSettings settings){
+            IEnumerable<CarModel> cars = _context.Cars;
+
+            if(settings.Make != null){
+                cars = cars.Where(x => x.Make == settings.Make);
+            } 
+
+            if(settings.Model != null){
+                cars = cars.Where(x => x.Model == settings.Model);
+            }
+
+            if(settings.MinPrice != null){
+                cars = cars.Where(x => x.Price > settings.MinPrice);
+            }
+
+            if(settings.MaxPrice != null){
+                cars = cars.Where(x => x.Price < settings.MaxPrice);
+            }
+
+            if(settings.MinManufactureYear != null){
+                cars = cars.Where(x => x.ManufactureYear > settings.MinManufactureYear);
+            }
+
+            if(settings.MaxManufactureYear != null){
+                cars = cars.Where(x => x.ManufactureYear < settings.MaxManufactureYear);
+            }
+
+            return cars;
+        }
+
         public void CreateCar(CarModel car){
             _context.Cars.Add(car);
         }

@@ -11,5 +11,9 @@ namespace CarShopAPI.Data{
        UserModel FindUser(LoginModel user);
 
        void CreateCar(CarModel car);
+
+       IEnumerable<CarModel> CarsByUserId(int id);
+
+       IEnumerable<CarModel> CarsWithSettings(SearchSettings settings);
     }
 }
