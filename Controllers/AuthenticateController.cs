@@ -22,7 +22,7 @@ namespace CarShopAPI.Controllers{
             _configuration = configuration;
         }
 
-        //POST api/authenticate/register
+        //POST api/authenticate/register/
         [AllowAnonymous]
         [HttpPost]
         [Route("register")]
@@ -41,7 +41,7 @@ namespace CarShopAPI.Controllers{
             return BadRequest("Invalid data");
         }
 
-        //POST api/authenticate/login
+        //POST api/authenticate/login/
         [AllowAnonymous]
         [HttpPost]
         [Route("login")]

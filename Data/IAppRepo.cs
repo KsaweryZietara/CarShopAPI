@@ -15,5 +15,15 @@ namespace CarShopAPI.Data{
        IEnumerable<CarModel> CarsByUserId(int id);
 
        IEnumerable<CarModel> CarsWithSettings(SearchSettings settings);
+
+       CarModel BuyCar(int carId, int buyerId);
+
+       UserModel GetUserById(int id);
+
+       void DeleteUser(UserModel user);
+
+       CarModel GetCarById(int id);
+
+       void DeleteCar(CarModel car);
     }
 }

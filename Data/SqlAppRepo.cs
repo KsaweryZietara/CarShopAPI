@@ -10,12 +10,25 @@ namespace CarShopAPI.Data{
             _context = context;
         }
 
+        public CarModel BuyCar(int carId, int buyerId){
+            var car = _context.Cars.Where(x => x.Id == carId && x.BuyerId == null)
+                                    .FirstOrDefault();
+            
+            if(car != null){
+                car.BuyerId = buyerId;  
+                car.Status = "Finalized";
+                return car;              
+            }       
+
+            return null;
+        }
+
         public IEnumerable<CarModel> CarsByUserId(int id){
             return _context.Cars.Where(x => x.SellerId == id);
         }
 
         public IEnumerable<CarModel> CarsWithSettings(SearchSettings settings){
-            IEnumerable<CarModel> cars = _context.Cars;
+            IEnumerable<CarModel> cars = _context.Cars.Where(x => x.Status == "available");
 
             if(settings.Make != null){
                 cars = cars.Where(x => x.Make == settings.Make);
@@ -64,9 +77,25 @@ namespace CarShopAPI.Data{
             return null;
         }
 
+        public void DeleteCar(CarModel car){
+            _context.Cars.Remove(car);
+        }
+
+        public void DeleteUser(UserModel user){
+            _context.Users.Remove(user);
+        }
+
         public UserModel FindUser(LoginModel user){
             return _context.Users.FirstOrDefault(x => x.Username == user.Username &&
                 x.Password == user.Password);
+        }
+
+        public CarModel GetCarById(int id){
+            return _context.Cars.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public UserModel GetUserById(int id){
+            return _context.Users.Where(x => x.Id == id).FirstOrDefault();
         }
 
         public bool SaveChanges(){
