@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/CarShopAPI.csproj",
+                "${workspaceFolder}/Build.proj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/CarShopAPI.csproj",
+                "${workspaceFolder}/CarShopApi.Api/CarShopAPI.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/CarShopAPI.csproj"
+                "${workspaceFolder}/CarShopApi.Api/CarShopAPI.Api.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
